@@ -45,10 +45,10 @@
     register: remote_backup_config
     when: device_os == 'aos8'  
 
-  - name: PRINT >> remote backup configuration
-    debug:
-      msg: "{{ remote_backup_config.json['result']['output'] }}"
-      verbosity: 0    
+  # - name: PRINT >> remote backup configuration
+  #   debug:
+  #     msg: "{{ remote_backup_config.json['result']['output'] }}"
+  #     verbosity: 0    
 
   - name: AOS8 >> rest logout
     uri:
@@ -80,8 +80,8 @@
       mode: 0644
     when: device_os == 'aos8'  
 
-  - name: LOCAL >> aos8 copy configuration to local folder
-    - hosts: "{{ftpserver}}"
+  - name: REMOTE >> aos8 copy configuration to Remote Server
+    - hosts: FTPServer
       tasks:
         - ansible.builtin.copy:
             src: "backups/{{ device_vendor }}/{{ inventory_hostname }}/{{ ansible_host }}-{{lookup('pipe','date +%Y%m%d')}}.cfg"
