@@ -2,8 +2,8 @@
 - name: Deploy New Switch
   gather_facts: false
   connection: local
-  hosts: [localhost]
-  
+  hosts: [New AOS8 OmniSwitch]
+
   tasks:  
   - name: AOS8 >> check 443 open port
     wait_for:
