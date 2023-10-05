@@ -81,8 +81,4 @@
     when: device_os == 'aos8'  
 
   - name: REMOTE >> aos8 copy configuration to Remote Server
-    - hosts: FTPServer
-      tasks:
-        - ansible.builtin.copy:
-            src: "backups/{{ device_vendor }}/{{ inventory_hostname }}/{{ ansible_host }}-{{lookup('pipe','date +%Y%m%d')}}.cfg"
-            dest: /home/sadmin/"{{ ansible_host }}-{{lookup('pipe','date +%Y%m%d')}}.cfg"    
+    shell: curl -T "backups/{{ device_vendor }}/{{ inventory_hostname }}/{{ ansible_host }}-{{lookup('pipe','date +%Y%m%d')}}.cfg" -u "sadmin:p@ssw0rd" ftp://192.168.2.241/home/sadmin/
