@@ -34,7 +34,7 @@
 
   - name: AOS8 >> create VLAN
     uri:
-      url: https://{{ ansible_host }}/cli/aos/?&cmd=vlan+300
+      url: https://{{ ansible_host }}/cli/aos/?&cmd=vlan+{{ vlan_id }}
       method: GET
       validate_certs: false
       return_content: true
