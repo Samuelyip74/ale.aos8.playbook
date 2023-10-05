@@ -82,8 +82,8 @@
 
   - name: REMOTE >> aos8 copy configuration to Remote Server
     shell: |
-    ftp 192.168.2.247
-    echo "sadmin"
-    echo "p@ssword"
-    put "backups/{{ device_vendor }}/{{ inventory_hostname }}/{{ ansible_host }}-{{lookup('pipe','date +%Y%m%d')}}.cfg"
-    bye
+      ftp 192.168.2.247
+      echo "sadmin"
+      echo "p@ssword"
+      put "backups/{{ device_vendor }}/{{ inventory_hostname }}/{{ ansible_host }}-{{lookup('pipe','date +%Y%m%d')}}.cfg"
+      bye
