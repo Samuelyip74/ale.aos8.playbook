@@ -7,7 +7,7 @@
   tasks:  
   - name: AOS8 >> check 443 open port
     wait_for:
-      host: '{{ switch_ip_address }}'
+      host: '{{ ansible_host }}'
       port: 443
       state: started
       delay: 0
@@ -21,7 +21,7 @@
 
   - name: AOS8 >> rest login, get return cookie
     uri:
-      url: https://{{ switch_ip_address }}/auth/?username={{ ale_username }}&password={{ ale_password }}
+      url: https://{{ ansible_host }}/auth/?username={{ ale_username }}&password={{ ale_password }}
       method: GET
       validate_certs: false
     register: login
@@ -34,7 +34,7 @@
 
   # - name: AOS8 >> System Name
   #   uri:
-  #     url: https://{{ switch_ip_address }}/cli/aos/?&cmd=system+name+{{ system_name }}
+  #     url: https://{{ ansible_host }}/cli/aos/?&cmd=system+name+{{ system_name }}
   #     method: GET
   #     validate_certs: false
   #     return_content: true
@@ -45,7 +45,7 @@
 
   # - name: AOS8 >> System Location
   #   uri:
-  #     url: https://{{ switch_ip_address }}/cli/aos/?&cmd=system+location+{{ system_location }}
+  #     url: https://{{ ansible_host }}/cli/aos/?&cmd=system+location+{{ system_location }}
   #     method: GET
   #     validate_certs: false
   #     return_content: true
@@ -56,7 +56,7 @@
 
   - name: AOS8 >> System Contact
     uri:
-      url: https://{{ switch_ip_address }}/cli/aos/?&cmd=system+contact+{{ system_contact }}
+      url: https://{{ ansible_host }}/cli/aos/?&cmd=system+contact+{{ system_contact }}
       method: GET
       validate_certs: false
       return_content: true
@@ -67,7 +67,7 @@
 
   # - name: AOS8 >> Create VLAN
   #   uri:
-  #     url: https://{{ switch_ip_address }}/cli/aos/?&cmd=vlan+1
+  #     url: https://{{ ansible_host }}/cli/aos/?&cmd=vlan+1
   #     method: GET
   #     validate_certs: false
   #     return_content: true
@@ -78,7 +78,7 @@
 
   # - name: AOS8 >> Create VLAN
   #   uri:
-  #     url: https://{{ switch_ip_address }}/cli/aos/?&cmd=vlan+2
+  #     url: https://{{ ansible_host }}/cli/aos/?&cmd=vlan+2
   #     method: GET
   #     validate_certs: false
   #     return_content: true
@@ -89,7 +89,7 @@
 
   # - name: AOS8 >> Create VLAN
   #   uri:
-  #     url: https://{{ switch_ip_address }}/cli/aos/?&cmd=vlan+3
+  #     url: https://{{ ansible_host }}/cli/aos/?&cmd=vlan+3
   #     method: GET
   #     validate_certs: false
   #     return_content: true
@@ -100,7 +100,7 @@
 
   # - name: AOS8 >> Create VLAN
   #   uri:
-  #     url: https://{{ switch_ip_address }}/cli/aos/?&cmd=vlan+4
+  #     url: https://{{ ansible_host }}/cli/aos/?&cmd=vlan+4
   #     method: GET
   #     validate_certs: false
   #     return_content: true
@@ -111,7 +111,7 @@
 
   # - name: AOS8 >> Create VLAN
   #   uri:
-  #     url: https://{{ switch_ip_address }}/cli/aos/?&cmd=vlan+5
+  #     url: https://{{ ansible_host }}/cli/aos/?&cmd=vlan+5
   #     method: GET
   #     validate_certs: false
   #     return_content: true
@@ -122,7 +122,7 @@
 
   # - name: AOS8 >> Create VLAN
   #   uri:
-  #     url: https://{{ switch_ip_address }}/cli/aos/?&cmd=vlan+6
+  #     url: https://{{ ansible_host }}/cli/aos/?&cmd=vlan+6
   #     method: GET
   #     validate_certs: false
   #     return_content: true
@@ -133,7 +133,7 @@
 
   # - name: AOS8 >> Create VLAN
   #   uri:
-  #     url: https://{{ switch_ip_address }}/cli/aos/?&cmd=vlan+7
+  #     url: https://{{ ansible_host }}/cli/aos/?&cmd=vlan+7
   #     method: GET
   #     validate_certs: false
   #     return_content: true
@@ -144,7 +144,7 @@
 
   # - name: AOS8 >> Create VLAN
   #   uri:
-  #     url: https://{{ switch_ip_address }}/cli/aos/?&cmd=vlan+8
+  #     url: https://{{ ansible_host }}/cli/aos/?&cmd=vlan+8
   #     method: GET
   #     validate_certs: false
   #     return_content: true
@@ -155,7 +155,7 @@
 
   # - name: AOS8 >> Create VLAN
   #   uri:
-  #     url: https://{{ switch_ip_address }}/cli/aos/?&cmd=vlan+9
+  #     url: https://{{ ansible_host }}/cli/aos/?&cmd=vlan+9
   #     method: GET
   #     validate_certs: false
   #     return_content: true
@@ -166,7 +166,7 @@
 
   # - name: AOS8 >> Create VLAN
   #   uri:
-  #     url: https://{{ switch_ip_address }}/cli/aos/?&cmd=vlan+10
+  #     url: https://{{ ansible_host }}/cli/aos/?&cmd=vlan+10
   #     method: GET
   #     validate_certs: false
   #     return_content: true
@@ -177,7 +177,7 @@
 
   - name: AOS8 >> rest logout
     uri:
-      url: https://{{ switch_ip_address }}/auth/?
+      url: https://{{ ansible_host }}/auth/?
       method: POST
       validate_certs: false
       status_code: 200
