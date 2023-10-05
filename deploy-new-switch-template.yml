@@ -2,7 +2,7 @@
 - name: Deploy New Switch
   gather_facts: false
   connection: local
-  hosts: all
+  hosts: "{{ switch_ip_address }}"
 
   tasks:  
   - name: AOS8 >> check 443 open port
@@ -32,27 +32,27 @@
     debug:
       msg:  "{{login.cookies_string}}"
 
-  - name: AOS8 >> System Name
-    uri:
-      url: https://{{ ansible_host }}/cli/aos/?&cmd=system+name+{{ system_name }}
-      method: GET
-      validate_certs: false
-      return_content: true
-      headers:
-        Cookie: "{{ login['cookies_string'] }}"
-        Accept: application/vnd.alcatellucentaos+json
-    when: device_os == 'aos8'
+  # - name: AOS8 >> System Name
+  #   uri:
+  #     url: https://{{ ansible_host }}/cli/aos/?&cmd=system+name+{{ system_name }}
+  #     method: GET
+  #     validate_certs: false
+  #     return_content: true
+  #     headers:
+  #       Cookie: "{{ login['cookies_string'] }}"
+  #       Accept: application/vnd.alcatellucentaos+json
+  #   when: device_os == 'aos8'
 
-  - name: AOS8 >> System Location
-    uri:
-      url: https://{{ ansible_host }}/cli/aos/?&cmd=system+location+{{ system_location }}
-      method: GET
-      validate_certs: false
-      return_content: true
-      headers:
-        Cookie: "{{ login['cookies_string'] }}"
-        Accept: application/vnd.alcatellucentaos+json
-    when: device_os == 'aos8'    
+  # - name: AOS8 >> System Location
+  #   uri:
+  #     url: https://{{ ansible_host }}/cli/aos/?&cmd=system+location+{{ system_location }}
+  #     method: GET
+  #     validate_certs: false
+  #     return_content: true
+  #     headers:
+  #       Cookie: "{{ login['cookies_string'] }}"
+  #       Accept: application/vnd.alcatellucentaos+json
+  #   when: device_os == 'aos8'    
 
   - name: AOS8 >> System Contact
     uri:
@@ -65,115 +65,115 @@
         Accept: application/vnd.alcatellucentaos+json
     when: device_os == 'aos8'      
 
-  - name: AOS8 >> Create VLAN
-    uri:
-      url: https://{{ ansible_host }}/cli/aos/?&cmd=vlan+1
-      method: GET
-      validate_certs: false
-      return_content: true
-      headers:
-        Cookie: "{{ login['cookies_string'] }}"
-        Accept: application/vnd.alcatellucentaos+json
-    when: device_os == 'aos8'      
+  # - name: AOS8 >> Create VLAN
+  #   uri:
+  #     url: https://{{ ansible_host }}/cli/aos/?&cmd=vlan+1
+  #     method: GET
+  #     validate_certs: false
+  #     return_content: true
+  #     headers:
+  #       Cookie: "{{ login['cookies_string'] }}"
+  #       Accept: application/vnd.alcatellucentaos+json
+  #   when: device_os == 'aos8'      
 
-  - name: AOS8 >> Create VLAN
-    uri:
-      url: https://{{ ansible_host }}/cli/aos/?&cmd=vlan+2
-      method: GET
-      validate_certs: false
-      return_content: true
-      headers:
-        Cookie: "{{ login['cookies_string'] }}"
-        Accept: application/vnd.alcatellucentaos+json
-    when: device_os == 'aos8'      
+  # - name: AOS8 >> Create VLAN
+  #   uri:
+  #     url: https://{{ ansible_host }}/cli/aos/?&cmd=vlan+2
+  #     method: GET
+  #     validate_certs: false
+  #     return_content: true
+  #     headers:
+  #       Cookie: "{{ login['cookies_string'] }}"
+  #       Accept: application/vnd.alcatellucentaos+json
+  #   when: device_os == 'aos8'      
 
-  - name: AOS8 >> Create VLAN
-    uri:
-      url: https://{{ ansible_host }}/cli/aos/?&cmd=vlan+3
-      method: GET
-      validate_certs: false
-      return_content: true
-      headers:
-        Cookie: "{{ login['cookies_string'] }}"
-        Accept: application/vnd.alcatellucentaos+json
-    when: device_os == 'aos8'      
+  # - name: AOS8 >> Create VLAN
+  #   uri:
+  #     url: https://{{ ansible_host }}/cli/aos/?&cmd=vlan+3
+  #     method: GET
+  #     validate_certs: false
+  #     return_content: true
+  #     headers:
+  #       Cookie: "{{ login['cookies_string'] }}"
+  #       Accept: application/vnd.alcatellucentaos+json
+  #   when: device_os == 'aos8'      
 
-  - name: AOS8 >> Create VLAN
-    uri:
-      url: https://{{ ansible_host }}/cli/aos/?&cmd=vlan+4
-      method: GET
-      validate_certs: false
-      return_content: true
-      headers:
-        Cookie: "{{ login['cookies_string'] }}"
-        Accept: application/vnd.alcatellucentaos+json
-    when: device_os == 'aos8'     
+  # - name: AOS8 >> Create VLAN
+  #   uri:
+  #     url: https://{{ ansible_host }}/cli/aos/?&cmd=vlan+4
+  #     method: GET
+  #     validate_certs: false
+  #     return_content: true
+  #     headers:
+  #       Cookie: "{{ login['cookies_string'] }}"
+  #       Accept: application/vnd.alcatellucentaos+json
+  #   when: device_os == 'aos8'     
 
-  - name: AOS8 >> Create VLAN
-    uri:
-      url: https://{{ ansible_host }}/cli/aos/?&cmd=vlan+5
-      method: GET
-      validate_certs: false
-      return_content: true
-      headers:
-        Cookie: "{{ login['cookies_string'] }}"
-        Accept: application/vnd.alcatellucentaos+json
-    when: device_os == 'aos8'      
+  # - name: AOS8 >> Create VLAN
+  #   uri:
+  #     url: https://{{ ansible_host }}/cli/aos/?&cmd=vlan+5
+  #     method: GET
+  #     validate_certs: false
+  #     return_content: true
+  #     headers:
+  #       Cookie: "{{ login['cookies_string'] }}"
+  #       Accept: application/vnd.alcatellucentaos+json
+  #   when: device_os == 'aos8'      
 
-  - name: AOS8 >> Create VLAN
-    uri:
-      url: https://{{ ansible_host }}/cli/aos/?&cmd=vlan+6
-      method: GET
-      validate_certs: false
-      return_content: true
-      headers:
-        Cookie: "{{ login['cookies_string'] }}"
-        Accept: application/vnd.alcatellucentaos+json
-    when: device_os == 'aos8'       
+  # - name: AOS8 >> Create VLAN
+  #   uri:
+  #     url: https://{{ ansible_host }}/cli/aos/?&cmd=vlan+6
+  #     method: GET
+  #     validate_certs: false
+  #     return_content: true
+  #     headers:
+  #       Cookie: "{{ login['cookies_string'] }}"
+  #       Accept: application/vnd.alcatellucentaos+json
+  #   when: device_os == 'aos8'       
 
-  - name: AOS8 >> Create VLAN
-    uri:
-      url: https://{{ ansible_host }}/cli/aos/?&cmd=vlan+7
-      method: GET
-      validate_certs: false
-      return_content: true
-      headers:
-        Cookie: "{{ login['cookies_string'] }}"
-        Accept: application/vnd.alcatellucentaos+json
-    when: device_os == 'aos8'       
+  # - name: AOS8 >> Create VLAN
+  #   uri:
+  #     url: https://{{ ansible_host }}/cli/aos/?&cmd=vlan+7
+  #     method: GET
+  #     validate_certs: false
+  #     return_content: true
+  #     headers:
+  #       Cookie: "{{ login['cookies_string'] }}"
+  #       Accept: application/vnd.alcatellucentaos+json
+  #   when: device_os == 'aos8'       
 
-  - name: AOS8 >> Create VLAN
-    uri:
-      url: https://{{ ansible_host }}/cli/aos/?&cmd=vlan+8
-      method: GET
-      validate_certs: false
-      return_content: true
-      headers:
-        Cookie: "{{ login['cookies_string'] }}"
-        Accept: application/vnd.alcatellucentaos+json
-    when: device_os == 'aos8'        
+  # - name: AOS8 >> Create VLAN
+  #   uri:
+  #     url: https://{{ ansible_host }}/cli/aos/?&cmd=vlan+8
+  #     method: GET
+  #     validate_certs: false
+  #     return_content: true
+  #     headers:
+  #       Cookie: "{{ login['cookies_string'] }}"
+  #       Accept: application/vnd.alcatellucentaos+json
+  #   when: device_os == 'aos8'        
 
-  - name: AOS8 >> Create VLAN
-    uri:
-      url: https://{{ ansible_host }}/cli/aos/?&cmd=vlan+9
-      method: GET
-      validate_certs: false
-      return_content: true
-      headers:
-        Cookie: "{{ login['cookies_string'] }}"
-        Accept: application/vnd.alcatellucentaos+json
-    when: device_os == 'aos8' 
+  # - name: AOS8 >> Create VLAN
+  #   uri:
+  #     url: https://{{ ansible_host }}/cli/aos/?&cmd=vlan+9
+  #     method: GET
+  #     validate_certs: false
+  #     return_content: true
+  #     headers:
+  #       Cookie: "{{ login['cookies_string'] }}"
+  #       Accept: application/vnd.alcatellucentaos+json
+  #   when: device_os == 'aos8' 
 
-  - name: AOS8 >> Create VLAN
-    uri:
-      url: https://{{ ansible_host }}/cli/aos/?&cmd=vlan+10
-      method: GET
-      validate_certs: false
-      return_content: true
-      headers:
-        Cookie: "{{ login['cookies_string'] }}"
-        Accept: application/vnd.alcatellucentaos+json
-    when: device_os == 'aos8'     
+  # - name: AOS8 >> Create VLAN
+  #   uri:
+  #     url: https://{{ ansible_host }}/cli/aos/?&cmd=vlan+10
+  #     method: GET
+  #     validate_certs: false
+  #     return_content: true
+  #     headers:
+  #       Cookie: "{{ login['cookies_string'] }}"
+  #       Accept: application/vnd.alcatellucentaos+json
+  #   when: device_os == 'aos8'     
 
   - name: AOS8 >> rest logout
     uri:
