@@ -1,0 +1,108 @@
+---
+- name: Create OSPF configuration
+  gather_facts: false
+  connection: local
+  hosts: all
+
+  tasks:  
+  - name: AOS8 >> check 443 open port
+    wait_for:
+      host: '{{ ansible_host }}'
+      port: 443
+      state: started
+      delay: 0
+      timeout: 1
+    ignore_errors: true
+    register: port_443_state
+    when: device_os == 'aos8'
+  - name: DEBUG >> port 443 state
+    debug:
+      msg : "{{ port_443_state }}"
+
+  - name: AOS8 >> rest login, get return cookie
+    uri:
+      url: https://{{ ansible_host }}/auth/?username={{ ale_username }}&password={{ ale_password }}
+      method: GET
+      validate_certs: false
+    register: login
+    until: login.status == 200
+    when: device_os == 'aos8'
+
+  - name: DEBUG >> login
+    debug:
+      msg:  "{{login.cookies_string}}"
+
+  - name: AOS8 >> ip load ospf
+    uri:
+      url: https://{{ ansible_host }}/cli/aos/?&cmd=ip+load+ospf
+      method: GET
+      validate_certs: false
+      return_content: true
+      headers:
+        Cookie: "{{ login['cookies_string'] }}"
+        Accept: application/vnd.alcatellucentaos+json
+    when: device_os == 'aos8'
+
+  - name: AOS8 >> ip ospf admin-state enable
+    uri:
+      url: https://{{ ansible_host }}/cli/aos/?&cmd=ip+ospf+admin-state+enable
+      method: GET
+      validate_certs: false
+      return_content: true
+      headers:
+        Cookie: "{{ login['cookies_string'] }}"
+        Accept: application/vnd.alcatellucentaos+json
+    when: device_os == 'aos8'
+
+  - name: AOS8 >> ip ospf area <area_id>
+    uri:
+      url: https://{{ ansible_host }}/cli/aos/?&cmd=ip+ospf+area+{{ area_id }}
+      method: GET
+      validate_certs: false
+      return_content: true
+      headers:
+        Cookie: "{{ login['cookies_string'] }}"
+        Accept: application/vnd.alcatellucentaos+json
+    when: device_os == 'aos8'    
+
+  - name: AOS8 >> ip ospf interface
+    uri:
+      url: https://{{ ansible_host }}/cli/aos/?&cmd=ip+ospf+interface+{{ interface_name }}
+      method: GET
+      validate_certs: false
+      return_content: true
+      headers:
+        Cookie: "{{ login['cookies_string'] }}"
+        Accept: application/vnd.alcatellucentaos+json
+    when: device_os == 'aos8'   
+
+  - name: AOS8 >> ip ospf interface area
+    uri:
+      url: https://{{ ansible_host }}/cli/aos/?&cmd=ip+ospf+interface+{{ interface_name }}+area+{{ area_id }}
+      method: GET
+      validate_certs: false
+      return_content: true
+      headers:
+        Cookie: "{{ login['cookies_string'] }}"
+        Accept: application/vnd.alcatellucentaos+json
+    when: device_os == 'aos8'       
+
+  - name: AOS8 >> ip ospf interface area enable
+    uri:
+      url: https://{{ ansible_host }}/cli/aos/?&cmd=ip+ospf+interface+{{ interface_name }}+admin-state+enable
+      validate_certs: false
+      return_content: true
+      headers:
+        Cookie: "{{ login['cookies_string'] }}"
+        Accept: application/vnd.alcatellucentaos+json
+    when: device_os == 'aos8'             
+
+  - name: AOS8 >> rest logout
+    uri:
+      url: https://{{ ansible_host }}/auth/?
+      method: POST
+      validate_certs: false
+      status_code: 200
+      headers:
+        Cookies: "{{ login['cookies_string'] }}"
+    when: device_os == 'aos8'
