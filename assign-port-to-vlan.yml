@@ -34,7 +34,7 @@
 
   - name: AOS8 >> Assign Port to VLAN
     uri:
-      url: https://{{ ansible_host }}/cli/aos/?&cmd=vlan+{{ vlan_id }}+members+port+{{ port_id }}
+      url: https://{{ ansible_host }}/cli/aos/?&cmd=vlan+{{ vlan_id }}+members+port+{{ port_id }}+untagged
       method: GET
       validate_certs: false
       return_content: true
