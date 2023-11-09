@@ -80,6 +80,6 @@
       mode: 0644
     when: device_os == 'aos8'  
 
-  - name: REMOTE >> aos8 copy configuration to Remote Server
-    shell: |
-      curl -T "backups/{{ device_vendor }}/{{ inventory_hostname }}/{{ ansible_host }}-{{lookup('pipe','date +%Y%m%d')}}.cfg" ftp://192.168.2.247/ --user sadmin:p@ssw0rd
+  # - name: REMOTE >> aos8 copy configuration to Remote Server
+  #   shell: |
+  #     curl -T "backups/{{ device_vendor }}/{{ inventory_hostname }}/{{ ansible_host }}-{{lookup('pipe','date +%Y%m%d')}}.cfg" ftp://192.168.2.247/ --user sadmin:p@ssw0rd
