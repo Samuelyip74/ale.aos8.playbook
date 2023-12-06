@@ -45,10 +45,10 @@
     register: remote_backup_config
     when: device_os == 'aos8'  
 
-  # - name: PRINT >> remote backup configuration
-  #   debug:
-  #     msg: "{{ remote_backup_config.json['result']['output'] }}"
-  #     verbosity: 0    
+  - name: PRINT >> remote backup configuration
+    debug:
+      msg: "{{ remote_backup_config.json['result']['output'] }}"
+      verbosity: 0    
 
   - name: AOS8 >> rest logout
     uri:
