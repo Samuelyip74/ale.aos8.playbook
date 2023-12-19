@@ -1,5 +1,5 @@
 ---
-- name: Create VLAN with alcatel.aos8 collection 
+- name: Create VLAN with alcatel.aos8 collection 1
   gather_facts: false
   vars:
     ansible_aos_flash_synchro_flag : true
